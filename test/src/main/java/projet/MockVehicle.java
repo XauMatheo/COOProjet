@@ -1,15 +1,19 @@
 package projet;
 
-import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.assertSame;
+
 
 import java.util.List;
 
-public class MockVehicleTest extends Vehicle{
+public class MockVehicle extends Vehicle{
 
 
-    public MockVehicleTest(double price) {
+    public MockVehicle(float price) {
         super(price);
+    }
+
+    @Override 
+    public float cost() {
+        return this.price;
     }
 
 
@@ -26,13 +30,19 @@ public class MockVehicleTest extends Vehicle{
     }
     */
 
-    @Test
+  
     @Override 
     public void getAccessory(){
         for(VehicleAccessoryDecorator ac : this.accessories){
             System.out.println(ac.toString());
         }
     }
+    
+    @Override
+    public void addAccessory(VehicleAccessoryDecorator acd) {
+        this.accessories.add(acd);
+    }
+
     /* 
     @Override 
     public State getState(){
@@ -52,14 +62,6 @@ public class MockVehicleTest extends Vehicle{
     */
 
 
-   Vehicle v = new MockVehicleTest(100.0);
-
-    VehicleAccessoryDecorator vcd = new Basket(v);
-
-    v.addAccessory(vcd);
-    
-    
-
-    
+ 
 
 }
