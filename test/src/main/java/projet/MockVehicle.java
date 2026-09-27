@@ -7,8 +7,8 @@ import java.util.List;
 public class MockVehicle extends Vehicle{
 
 
-    public MockVehicle(float price) {
-        super(price);
+    public MockVehicle(float price , ColorEnum c) {
+        super(price , c);
     }
 
     @Override 
@@ -41,6 +41,7 @@ public class MockVehicle extends Vehicle{
     @Override
     public void addAccessory(VehicleAccessoryDecorator acd) {
         this.accessories.add(acd);
+        acd.cost();
     }
 
     /* 

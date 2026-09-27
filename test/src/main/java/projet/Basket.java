@@ -9,6 +9,10 @@ public class Basket extends VehicleAccessoryDecorator {
 
     @Override
     public float cost() {
-        return vehicle.cost() + 20;
+        vehicle.setCost(vehicle.getPrice() +20); // 120
+        return vehicle.getPrice();
     }
+
+    
 }
+
