@@ -5,7 +5,7 @@ public abstract class VehicleAccessoryDecorator extends Vehicle{
     protected final Vehicle vehicle;
 
     protected VehicleAccessoryDecorator(Vehicle vehicle) {
-        super(vehicle.getPrice(), vehicle.getColor());
+        super(vehicle.getId() , vehicle.getPrice(), vehicle.getColor());
         this.vehicle = vehicle;
         
     }
@@ -14,4 +14,6 @@ public abstract class VehicleAccessoryDecorator extends Vehicle{
     public float getPriceAccessory(){
         return this.price;
     }
+
+    public abstract String toString();
 }

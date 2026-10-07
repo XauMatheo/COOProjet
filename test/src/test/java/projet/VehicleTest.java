@@ -14,7 +14,7 @@ public class VehicleTest {
 
     @BeforeEach 
     private void init(){
-        this.v = new MockVehicle(100 ,ColorEnum.BLACK);
+        this.v = new MockVehicle("DD-042",100 ,ColorEnum.BLACK);
         this.vad = new  Basket(this.v);
     }
 

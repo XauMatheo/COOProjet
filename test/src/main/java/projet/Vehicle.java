@@ -6,19 +6,23 @@ import java.util.List;
 
 public abstract class Vehicle {
 
+    protected  String id;
     protected float price;
     protected StateEnum state;
     protected int nbLoc;
+    protected int nbNotUsed;
     protected ColorEnum color;
 
     
     protected List<VehicleAccessoryDecorator> accessories;
 
 
-    public Vehicle(float price, ColorEnum c){
+    public Vehicle(String id , float price, ColorEnum c){
+        this.id = id;
         this.price = price;
         this.color = c;
         this.nbLoc = 0;
+        this.nbNotUsed = 0;
         this.state = StateEnum.AVAILABLE;
         this.accessories = new ArrayList<VehicleAccessoryDecorator>();
     }
@@ -39,6 +43,11 @@ public abstract class Vehicle {
     }
 
     public abstract float cost();
+
+
+    @Override public String toString(){
+        return "Id : "+this.id + " | Price : " +this.price+ " | Color :" + this.color + " | NbLoc :" + this.nbLoc + " | State : " + this.state ;
+    }
 
     // Getter & Setter of Price
 
@@ -76,6 +85,22 @@ public abstract class Vehicle {
 
     public ColorEnum getColor(){
         return this.color;
+    }
+
+    // Getter & Setter of Number of Used by time 
+
+    public int getNbNotUsed(){
+        return this.nbNotUsed;
+    }
+        
+    public void setNbNotUsed(){
+        this.nbNotUsed += 1;
+    }
+
+    // Getter ID 
+
+    public String getId(){
+        return this.id;
     }
 
 

@@ -7,8 +7,8 @@ import java.util.List;
 public class MockVehicle extends Vehicle{
 
 
-    public MockVehicle(float price , ColorEnum c) {
-        super(price , c);
+    public MockVehicle(String id,float price , ColorEnum c) {
+        super(id ,price , c);
     }
 
     @Override 
