@@ -16,20 +16,6 @@ public class MockVehicle extends Vehicle{
         return this.price;
     }
 
-
-    /* 
-    @Override 
-    public Float getPrice(){
-        return this.price();
-    }
-
-    
-    @Override 
-    public Color getColor(){
-        return this.color.toString();
-    }
-    */
-
   
     @Override 
     public void getAccessory(){
@@ -43,25 +29,6 @@ public class MockVehicle extends Vehicle{
         this.accessories.add(acd);
         acd.cost();
     }
-
-    /* 
-    @Override 
-    public State getState(){
-        return this.state;
-    }
-
-    @Override 
-    public int getNbLoc(){
-        return this.nbloc;
-    }
-
-    @Override 
-    public int getNbUnitTimeNotBorrowed(){
-        return this.getnbUnitTimeNotBorrowed;
-    }
-
-    */
-
 
  
 

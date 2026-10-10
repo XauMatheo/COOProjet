@@ -8,7 +8,7 @@ public abstract class Vehicle {
 
     protected  String id;
     protected float price;
-    protected StateEnum state;
+    protected State state;
     protected int nbLoc;
     protected int nbNotUsed;
     protected ColorEnum color;
@@ -23,7 +23,7 @@ public abstract class Vehicle {
         this.color = c;
         this.nbLoc = 0;
         this.nbNotUsed = 0;
-        this.state = StateEnum.AVAILABLE;
+        this.state = new Available();
         this.accessories = new ArrayList<VehicleAccessoryDecorator>();
     }
 
@@ -46,7 +46,7 @@ public abstract class Vehicle {
 
 
     @Override public String toString(){
-        return "Id : "+this.id + " | Price : " +this.price+ " | Color :" + this.color + " | NbLoc :" + this.nbLoc + " | State : " + this.state ;
+        return "Id : "+this.id + " | Price : " +this.price+ " | Color :" + this.color + " | NbLoc :" + this.nbLoc + " | State : " + this.state.currentState() ;
     }
 
     // Getter & Setter of Price
@@ -62,11 +62,11 @@ public abstract class Vehicle {
 
     // Getter & Setter of State 
 
-    public void setState(StateEnum s){
+    public void setState(State s){
         this.state = s ;
     }
 
-    public StateEnum getState(){
+    public State getState(){
         return this.state;
     }
 
