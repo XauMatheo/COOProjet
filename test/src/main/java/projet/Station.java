@@ -1,16 +1,22 @@
 package projet;
 
+import java.util.Observer;
+
 public class Station {
 
     private int id;
     private int capacity;
     private int nbV;
+    private int TimeFull;
+    private int TimeEmpty;
     private Vehicle[] tabV;
 
     public Station(int id , int capacity){
         this.id = id;
         this.capacity = capacity;
         this.nbV = 0;
+        this.TimeEmpty = 0;
+        this.TimeFull= 0;
         this.tabV = new Vehicle[capacity];
         
     }
@@ -31,6 +37,53 @@ public class Station {
         return this.nbV;
     }
 
+    public int getTimeFull(){
+        return this.TimeFull;
+    }
+    public int getTimeEmpty(){
+        return this.TimeEmpty;
+    }
+
+    public void setTimeFull(){
+        this.TimeFull = 0;
+    }
+
+    public void setTimeEmpty(){
+        this.TimeEmpty = 0;
+    }
+
+    public Vehicle getVehicleById(String id){
+
+        int trouve = 0;
+        for(int i = 0; i < nbV ; i++){
+            if(this.tabV[i].getId().equals(id) && this.tabV[i].getState() instanceof Available){
+                trouve = 1;
+                return this.tabV[i];
+            }
+        }
+        if(trouve == 0){
+            System.out.println("Cannot find the vehicle, try again");
+        }
+
+        return null;
+
+    }
+    public void removeVehicleById(String id){
+
+        int trouve = 0;
+        for(int i = 0; i < nbV ; i++){
+            if(this.tabV[i].getId() == id){
+                trouve = 1;
+                this.tabV[i] = null;
+                return;
+            }
+        }
+        if(trouve == 0){
+            System.out.println("Cannot find the vehicle, try again");
+        }
+
+    }
+
 
     // Show vehicles
 
@@ -42,9 +95,9 @@ public class Station {
 
     // Add Vehicle 
 
-    public void addVehicle(Vehicle v){
+    public void addVehicle(Vehicle v) throws MaxNumberVException{
         if (this.nbV == this.capacity){
-            System.out.println("The Station is full, try another one.");
+            throw new MaxNumberVException("Max number of Vehicle reach for this station");
         }else{
             for(int i = 0; i < capacity ; i++){
                 if(tabV[i] == null){
@@ -56,6 +109,7 @@ public class Station {
             }
         }
     }
+
 
     
 }

@@ -2,11 +2,15 @@
 
 Last Update : 
 
-- Implementation of State pattern for Vehicle's state 
-- Test : Adding a vehicle to the station
+Implementation of : Class Person (+ User) 
+Methods : RentVehicle()
+
+Implementation of : Class ControlCenter (Singleton pattern)
+Methods : getVehicleUsing() ,VehicleRented() -> doesn't work 
+
+Implementation of : Exception MaxNumberV for station 
 
 To do :
 
-- Implementation of an Exception for max number vehicle (station)
-- Class center control (Observer pattern (on Station)) 
-
+- Fix the problem with VehicleRented() -> look at comments 
+- Visitor Pattern -> Person 

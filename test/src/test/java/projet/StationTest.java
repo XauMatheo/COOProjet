@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertSame;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.BeforeEach;
 
@@ -16,7 +17,7 @@ public class StationTest {
     @BeforeEach 
     private void init(){
 
-        this.s = new Station(0);
+        this.s = new Station(123,2);
    
     }
 
@@ -24,10 +25,26 @@ public class StationTest {
     @Test 
     public void testAddVehicle(){
 
-        this.s.addVehicle(v);
+
+        try{
+            this.s.addVehicle(v);
+        }catch(MaxNumberVException e){
+            e.printStackTrace();
+        }
 
 
         assertEquals(1, this.s.getnbV());
+    }
+    @Test 
+    public void testAddVehicleException(){
+
+        assertThrows(MaxNumberVException.class, () -> {
+                 this.s.addVehicle(v);
+                 this.s.addVehicle(v);
+        this.s.addVehicle(v);
+
+
+        });
     }
 
 

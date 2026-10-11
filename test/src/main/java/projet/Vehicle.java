@@ -11,6 +11,7 @@ public abstract class Vehicle {
     protected State state;
     protected int nbLoc;
     protected int nbNotUsed;
+    protected int nbPositionStation;
     protected ColorEnum color;
 
     
@@ -102,6 +103,8 @@ public abstract class Vehicle {
     public String getId(){
         return this.id;
     }
+
+    
 
 
     public List<VehicleAccessoryDecorator> getAccessories(){

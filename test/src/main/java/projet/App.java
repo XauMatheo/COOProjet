@@ -27,11 +27,32 @@ public class App {
 
         Station s = new Station(123, 2) ;
 
-        s.addVehicle(v);
-        s.addVehicle(v2);
-        s.addVehicle(v2);
+        try{
+             s.addVehicle(v);
+            s.addVehicle(v2);
 
+        }catch(MaxNumberVException e){
+            System.out.println(e.getMessage());
+        }
+
+       
         s.getVehicle();
+
+
+        System.out.println();
+
+        
+        Person p = new User("Matheo", "Georges", 20, "Plombier", 200f);
+        p.RentVehicle(s, v.getId());
+
+        System.out.println(p.getSolde());
+
+        s.getVehicle(); // Ne marche pas, ne supprime pas le vehicle temporairement de la liste 
+
+        System.out.println();
+
+        ControlCenter.getControlCenter().getVehicleUsing(); // N'ajoute pas le vehicle dans la liste (IsUsing)
+       
 
 
     }
