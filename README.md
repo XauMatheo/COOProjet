@@ -2,15 +2,12 @@
 
 Last Update : 
 
-Implementation of : Class Person (+ User) 
-Methods : RentVehicle()
+Bugs fixed (A Vehicle can be add and remove from those 2 lists)
+Implementation of Method : FinishedRentingVehicle (class Person)
+Implementation of  Method : BackVehicleStation  (class ControlCenter)
+ControlCenter now handles differents station though a HashMap
 
-Implementation of : Class ControlCenter (Singleton pattern)
-Methods : getVehicleUsing() ,VehicleRented() -> doesn't work 
-
-Implementation of : Exception MaxNumberV for station 
 
 To do :
 
-- Fix the problem with VehicleRented() -> look at comments 
 - Visitor Pattern -> Person 

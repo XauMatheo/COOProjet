@@ -54,6 +54,7 @@ public class Station {
 
     public void setNbV(){
         this.nbV--;
+
     }
 
     public Vehicle getVehicleById(String id){
