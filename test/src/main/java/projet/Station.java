@@ -52,22 +52,28 @@ public class Station {
         this.TimeEmpty = 0;
     }
 
+    public void setNbV(){
+        this.nbV--;
+    }
+
     public Vehicle getVehicleById(String id){
 
         int trouve = 0;
         for(int i = 0; i < nbV ; i++){
-            if(this.tabV[i].getId().equals(id) && this.tabV[i].getState() instanceof Available){
+            if(this.tabV[i] != null && this.tabV[i].getId().equals(id) && this.tabV[i].getState() instanceof Available){
                 trouve = 1;
                 return this.tabV[i];
             }
         }
         if(trouve == 0){
-            System.out.println("Cannot find the vehicle, try again");
+            System.out.println("Cannot find the vehicle, try again(vv)");
         }
 
         return null;
 
     }
+
+
     public void removeVehicleById(String id){
 
         int trouve = 0;
@@ -89,7 +95,10 @@ public class Station {
 
     public void getVehicle(){
         for(int i = 0; i < nbV ; i++){
-            System.out.println(tabV[i].toString());
+            if(tabV[i] != null){
+                 System.out.println(tabV[i].toString());
+            }
+           
         }
     }
 

@@ -41,19 +41,50 @@ public class App {
 
         System.out.println();
 
+        // Init of Control Center
+
+        ControlCenter.getControlCenter().addMapStation(s);
+
+        ControlCenter.getControlCenter().showMapStation();
+
         
         Person p = new User("Matheo", "Georges", 20, "Plombier", 200f);
         p.RentVehicle(s, v.getId());
 
         System.out.println(p.getSolde());
 
-        s.getVehicle(); // Ne marche pas, ne supprime pas le vehicle temporairement de la liste 
+        //List of Vehicle which are available (not used) in the station
+
+        System.out.println("List of current Vehicle in the station (AVAILABLE");
+
+        s.getVehicle(); 
 
         System.out.println();
 
-        ControlCenter.getControlCenter().getVehicleUsing(); // N'ajoute pas le vehicle dans la liste (IsUsing)
-       
 
+
+        //List of Vehicle which are using by customers
+
+        System.out.println("List of current Vehicle using (UNAVAILABLE");
+
+        ControlCenter.getControlCenter().getVehicleUsing(); 
+
+              System.out.println();
+
+        System.out.println("The customer has finished using the vehicle");
+
+
+       
+        try {
+        p.FinishedRentingVehicle(s, v.getId());
+        } catch (MaxNumberVException e) {
+            System.out.println(e.getMessage());
+        }
+
+        s.getVehicle(); 
+
+        System.out.println();
+        ControlCenter.getControlCenter().getVehicleUsing();
 
     }
     

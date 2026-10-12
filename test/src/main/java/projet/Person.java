@@ -22,16 +22,26 @@ public abstract class Person {
 
         if( v!= null && this.solde >= v.getPrice()){
             this.solde -= v.getPrice();
-            System.out.println("Passer");
+            System.out.println("Cas passé");
             ControlCenter.getControlCenter().VehicleRented(st, idVehicle);
             
         
         }
 
-       
-
-
     }
+
+    public void FinishedRentingVehicle(Station st, String idVehicle) throws MaxNumberVException{
+
+
+            try{
+                ControlCenter.getControlCenter().BackVehicleStation(st, idVehicle);
+            }catch(MaxNumberVException e){
+                System.out.println("Station full");
+            }
+
+            
+        }
+
 
      // Solde getter
         public Float getSolde(){
