@@ -52,10 +52,7 @@ public class Station {
         this.TimeEmpty = 0;
     }
 
-    public void setNbV(){
-        this.nbV--;
-
-    }
+ 
 
     public Vehicle getVehicleById(String id){
 
@@ -79,15 +76,19 @@ public class Station {
 
         int trouve = 0;
         for(int i = 0; i < nbV ; i++){
-            if(this.tabV[i].getId() == id){
-                trouve = 1;
-                this.tabV[i] = null;
+            if (tabV[i] != null && tabV[i].getId().equals(id)){
+
+                for(int j = i ; j < nbV  -1; j++){
+                    tabV[j] = tabV[j+1];
+
+                }
+
+                tabV[nbV - 1] = null;
+                nbV--;
                 return;
             }
         }
-        if(trouve == 0){
-            System.out.println("Cannot find the vehicle, try again");
-        }
+    
 
     }
 

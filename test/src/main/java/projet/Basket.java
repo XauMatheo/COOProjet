@@ -20,6 +20,10 @@ public class Basket extends VehicleAccessoryDecorator {
         return "Basket | Cost : "+this.price;
     }
     
+    @Override 
+    public void visit(Visitor v){
+        
+    }
     
 }
 

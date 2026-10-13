@@ -4,7 +4,7 @@ import java.util.List;
 
 
 
-public abstract class Vehicle {
+public abstract class Vehicle implements  VehicleVisitor{
 
     protected  String id;
     protected float price;
@@ -44,7 +44,7 @@ public abstract class Vehicle {
     }
 
     public abstract float cost();
-
+    
 
     @Override public String toString(){
         return "Id : "+this.id + " | Price : " +this.price+ " | Color :" + this.color + " | NbLoc :" + this.nbLoc + " | State : " + this.state.currentState() ;
@@ -76,6 +76,10 @@ public abstract class Vehicle {
 
     public void setNbLocations(){
         this.nbLoc +=1;
+    }
+
+    public void initNbLocations(){
+        this.nbLoc = 0;
     }
 
     public int getNbLocations(){

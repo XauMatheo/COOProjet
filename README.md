@@ -2,12 +2,10 @@
 
 Last Update : 
 
-Bugs fixed (A Vehicle can be add and remove from those 2 lists)
-Implementation of Method : FinishedRentingVehicle (class Person)
-Implementation of  Method : BackVehicleStation  (class ControlCenter)
-ControlCenter now handles differents station though a HashMap
-
+Fixed bugs 
+Implementation of visitor pattern 
 
 To do :
 
-- Visitor Pattern -> Person 
+- Need to test visitor pattern (especially Method BackVehicleStation)
+- Think about the private instance Repairer(List ? instead) in ControlCenter class

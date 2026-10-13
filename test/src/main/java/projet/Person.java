@@ -22,7 +22,6 @@ public abstract class Person {
 
         if( v!= null && this.solde >= v.getPrice()){
             this.solde -= v.getPrice();
-            System.out.println("Cas passé");
             ControlCenter.getControlCenter().VehicleRented(st, idVehicle);
             
         

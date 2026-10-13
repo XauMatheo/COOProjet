@@ -30,6 +30,10 @@ public class MockVehicle extends Vehicle{
         acd.cost();
     }
 
+    @Override 
+    public void visit(Visitor v){
+
+    }
  
 
 }

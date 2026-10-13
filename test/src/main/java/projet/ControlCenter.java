@@ -12,6 +12,7 @@ public class ControlCenter {
     List<Vehicle> VehicleIsUsingBy;
     private static ControlCenter instance;
 
+    private Visitor repairer = new Repairer("Bob", null, 0, null, null);
 
     private ControlCenter(){
 
@@ -72,16 +73,16 @@ public class ControlCenter {
         }
 
         v.setState(new Unvailable());
+        v.setNbLocations();
         this.VehicleIsUsingBy.add(v);
         st.removeVehicleById(VehicleId);
-        st.setNbV();
+      
 
     }
 
-public void BackVehicleStation(Station st, String idVehicle)throws MaxNumberVException {
+   public void BackVehicleStation(Station st, String idVehicle)
+        throws MaxNumberVException {
 
-    int idStation = st.getId();
-    
     Vehicle ve = null;
 
     for (int i = 0; i < VehicleIsUsingBy.size(); i++) {
@@ -91,12 +92,56 @@ public void BackVehicleStation(Station st, String idVehicle)throws MaxNumberVExc
         }
     }
 
-    
-    if (ve != null) {
-        ve.setState(new Available());
-        station.get(idStation).addVehicle(ve);
+    if (ve == null) {
+        System.out.println("Vehicle not found");
+        return;
     }
+
+    if (ve.getNbLocations() == 1) {
+        ve.visit(repairer);
+    } else {
+        ve.setState(new Available());
+    }
+
+    st.addVehicle(ve);
 }
+
+
+
+    public void VehicleGetRepaired(Station st , String idVehicle){
+
+        Vehicle v = st.getVehicleById(idVehicle);
+
+        if(v == null){
+            System.out.println("Error with the Vehicle's ID");
+            return;
+        }
+
+        v.setState(new Unvailable());
+        System.out.println("Vehicle is being repaired");
+        
+    
+
+    }
+
+    public void FinishRepaired(Station st , String idVehicle){
+
+        Vehicle v = st.getVehicleById(idVehicle);
+
+        if(v == null){
+            System.out.println("Error with the Vehicle's ID");
+            return;
+        }
+
+        v.setState(new Available());
+        v.initNbLocations();
+
+    }
+
+
+
+
+
     }
 
 

@@ -1,15 +1,20 @@
 package projet;
 
+
+
 public class App {
 
+    public static int counterTime = 0; // General counter
     public static void main(String[] agrs){
 
-        int CounterTime = 0; // General counter 
+        
 
 
 
         Vehicle v= new MockVehicle("BB-011",100,ColorEnum.BLACK);
         Vehicle v2= new MockVehicle("BB-89" , 150,ColorEnum.RED);
+        Vehicle v3= new MockVehicle("BB-002" , 110,ColorEnum.YELLOW);
+
         VehicleAccessoryDecorator vad = new Basket(v);
 
         float priceB = v.getPrice();
@@ -26,10 +31,12 @@ public class App {
         System.out.println(v.getState());
 
         Station s = new Station(123, 2) ;
+        Station s2 = new Station(345, 2);
 
         try{
              s.addVehicle(v);
             s.addVehicle(v2);
+            s2.addVehicle(v3);
 
         }catch(MaxNumberVException e){
             System.out.println(e.getMessage());
@@ -37,6 +44,7 @@ public class App {
 
        
         s.getVehicle();
+        
 
 
         System.out.println();
@@ -44,7 +52,9 @@ public class App {
         // Init of Control Center
 
         ControlCenter.getControlCenter().addMapStation(s);
+        ControlCenter.getControlCenter().addMapStation(s2);
 
+        System.out.println("List of stations");
         ControlCenter.getControlCenter().showMapStation();
 
         
@@ -58,6 +68,8 @@ public class App {
         System.out.println("List of current Vehicle in the station (AVAILABLE");
 
         s.getVehicle(); 
+        s2.getVehicle();
+   
 
         System.out.println();
 
@@ -82,9 +94,12 @@ public class App {
         }
 
         s.getVehicle(); 
+        s2.getVehicle();
 
         System.out.println();
         ControlCenter.getControlCenter().getVehicleUsing();
+
+        
 
     }
     
