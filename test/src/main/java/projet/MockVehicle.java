@@ -31,7 +31,8 @@ public class MockVehicle extends Vehicle{
     }
 
     @Override 
-    public void visit(Visitor v){
+    public void accept(Visitor v){
+        v.visit(this);
 
     }
  

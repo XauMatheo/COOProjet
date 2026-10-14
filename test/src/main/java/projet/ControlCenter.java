@@ -10,6 +10,7 @@ public class ControlCenter {
 
     Map<Integer, Station> station;
     List<Vehicle> VehicleIsUsingBy;
+    List<Vehicle> VehicleRobbed;
     private static ControlCenter instance;
 
     private Visitor repairer = new Repairer("Bob", null, 0, null, null);
@@ -98,7 +99,7 @@ public class ControlCenter {
     }
 
     if (ve.getNbLocations() == 1) {
-        ve.visit(repairer);
+        ve.accept(repairer);
     } else {
         ve.setState(new Available());
     }
@@ -106,37 +107,52 @@ public class ControlCenter {
     st.addVehicle(ve);
 }
 
+    // Method to be used when the general counter has been increased by 1 if a vehicle was repairing
 
+    public void FinishRepaired(){
 
-    public void VehicleGetRepaired(Station st , String idVehicle){
-
-        Vehicle v = st.getVehicleById(idVehicle);
-
-        if(v == null){
-            System.out.println("Error with the Vehicle's ID");
-            return;
+        for(Map.Entry<Integer , Station> entry : station.entrySet()){
+            entry.getValue().setStateVehicle();
         }
 
-        v.setState(new Unvailable());
-        System.out.println("Vehicle is being repaired");
-        
+    }
+
+    // -------------------------- LAST UPDATE ----------------------------------------------------
+
     
+    public void addVehicleRobbed(Station st, String id){
 
+        VehicleRobbed.add(st.getVehicleById(id));
     }
 
-    public void FinishRepaired(Station st , String idVehicle){
+    // Show vehicle robbed
+    public void getVehicleRobbedr(){
 
-        Vehicle v = st.getVehicleById(idVehicle);
+        for(Vehicle v: VehicleRobbed){
+            System.out.println(v.toString());
+        }
+    }
 
-        if(v == null){
-            System.out.println("Error with the Vehicle's ID");
-            return;
+    public void checkVehicleToRob(Station st){
+
+        Vehicle ve = null;
+
+        if(st.getTimeAlone() == 2 && st.getnbV() == 1){
+
+            ve = st.getSingleVehicle();
+                
+            if (ve != null){
+                ve.setState(new Robbed());
+                st.removeVehicleById(ve.getId());
+                VehicleRobbed.add(ve);
+
+            }
+
         }
 
-        v.setState(new Available());
-        v.initNbLocations();
-
     }
+
+
 
 
 

@@ -58,7 +58,7 @@ public class App {
         ControlCenter.getControlCenter().showMapStation();
 
         
-        Person p = new User("Matheo", "Georges", 20, "Plombier", 200f);
+        Person p = new User("Matheo", "Georges", 20, "Plombier", 400f);
         p.RentVehicle(s, v.getId());
 
         System.out.println(p.getSolde());
@@ -98,6 +98,41 @@ public class App {
 
         System.out.println();
         ControlCenter.getControlCenter().getVehicleUsing();
+
+
+        System.out.println();
+
+        Vehicle v4 = new MockVehicle("BB-999", 200, ColorEnum.BLEU);
+
+        try{
+             s2.addVehicle(v4);
+        }catch (MaxNumberVException e) {
+            System.out.println(e.getMessage());
+        }
+       
+        p.RentVehicle(s2,v4.getId());
+
+        s2.getVehicle();
+
+        try{
+              p.FinishedRentingVehicle(s2, v4.getId());
+
+        }catch(MaxNumberVException e) {
+            System.out.println(e.getMessage());
+        }
+
+        System.out.println();
+
+        s2.getVehicle();
+
+
+        ControlCenter.getControlCenter().FinishRepaired();
+      
+
+           System.out.println();
+           
+        s2.getVehicle();
+        
 
         
 

@@ -2,6 +2,6 @@ package projet;
 
 interface VehicleVisitor {
 
-    void visit(Visitor v);
+    void accept(Visitor v);
     
 }

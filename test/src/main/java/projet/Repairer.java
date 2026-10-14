@@ -8,7 +8,7 @@ public class Repairer extends  Person implements  Visitor{
 
     @Override 
     public void visit(Vehicle v ){
-        v.setState(new Unvailable());
+      
         System.out.println("I'm working on the vehicle, it might take a moment");
 
     }

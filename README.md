@@ -2,10 +2,12 @@
 
 Last Update : 
 
-Fixed bugs 
-Implementation of visitor pattern 
+Impletation of many methods in : ControlCenter class
+Implementation of many methods in : Station class 
+
 
 To do :
 
-- Need to test visitor pattern (especially Method BackVehicleStation)
 - Think about the private instance Repairer(List ? instead) in ControlCenter class
+- Need to define different kind of distribution for ControlCenter 
+- Make the main file correctly to be automated (intervall, general counter ....) 

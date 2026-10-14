@@ -21,7 +21,7 @@ public class Basket extends VehicleAccessoryDecorator {
     }
     
     @Override 
-    public void visit(Visitor v){
+    public void accept(Visitor v){
         
     }
     

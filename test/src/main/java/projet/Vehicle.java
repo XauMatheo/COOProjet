@@ -11,7 +11,6 @@ public abstract class Vehicle implements  VehicleVisitor{
     protected State state;
     protected int nbLoc;
     protected int nbNotUsed;
-    protected int nbPositionStation;
     protected ColorEnum color;
 
     
@@ -114,6 +113,8 @@ public abstract class Vehicle implements  VehicleVisitor{
     public List<VehicleAccessoryDecorator> getAccessories(){
         return this.accessories;
     }
+
+ 
 
    
 

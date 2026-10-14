@@ -4,6 +4,8 @@ import java.util.Observer;
 
 public class Station {
 
+    private int timeAlone = 0; // Incrementer le compteur a chaque tour de temps 
+
     private int id;
     private int capacity;
     private int nbV;
@@ -18,10 +20,18 @@ public class Station {
         this.TimeEmpty = 0;
         this.TimeFull= 0;
         this.tabV = new Vehicle[capacity];
+        this.timeAlone = 0;
         
     }
 
 
+    public int getTimeAlone(){
+        return this.timeAlone;
+    }
+
+    public void setTimeAlone(){
+        this.timeAlone++;
+    }
 
     //Getter of capcity , id and nbV
 
@@ -119,6 +129,27 @@ public class Station {
                 }
             }
         }
+    }
+
+     // -------------------------- LAST UPDATE ----------------------------------------------------
+
+    public void setStateVehicle(){
+        for(int i = 0 ; i < nbV ; i++){
+            if(tabV[i].state instanceof Unvailable){
+                tabV[i].state = new Available();
+                tabV[i].nbLoc = 0;
+            }
+        }
+    }
+
+    public Vehicle getSingleVehicle(){
+        for(int i = 0; i < nbV; i++){
+            if(tabV[i] != null){
+                return tabV[i];
+            }
+        }
+        System.out.println("No vehicle in the station");
+        return null;
     }
 
 
