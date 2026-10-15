@@ -2,9 +2,7 @@
 
 Last Update : 
 
-Impletation of many methods in : ControlCenter class
-Implementation of many methods in : Station class 
-
+Implementation of ClassiqDistribution
 
 To do :
 

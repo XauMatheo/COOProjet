@@ -98,8 +98,16 @@ public class Station {
                 return;
             }
         }
-    
-
+    }
+    public Vehicle removeVehicle(){
+        for(int i = 0; i < nbV ; i++){
+            if(tabV[i] != null){
+                Vehicle v = tabV[i];
+                tabV[i] = null;
+                return v;
+            }
+        }
+        return null;
     }
 
 
@@ -151,6 +159,7 @@ public class Station {
         System.out.println("No vehicle in the station");
         return null;
     }
+
 
 
     
