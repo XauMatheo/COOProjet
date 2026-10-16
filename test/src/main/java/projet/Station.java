@@ -62,6 +62,23 @@ public class Station {
         this.TimeEmpty = 0;
     }
 
+
+    public boolean isFull(){
+        if(nbV == capacity){
+            return true;
+        }
+        return false;
+    }
+
+    public boolean isEmpty(){
+        if(nbV == 0){
+            return true;
+        }
+
+        return false;
+    }
+    
+
  
 
     public Vehicle getVehicleById(String id){
@@ -159,6 +176,8 @@ public class Station {
         System.out.println("No vehicle in the station");
         return null;
     }
+
+    
 
 
 

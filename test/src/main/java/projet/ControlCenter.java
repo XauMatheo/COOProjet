@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 
 
 public class ControlCenter {
@@ -12,6 +13,8 @@ public class ControlCenter {
     List<Vehicle> VehicleIsUsingBy;
     List<Vehicle> VehicleRobbed;
     private static ControlCenter instance;
+    private Random random;
+ 
 
     private Visitor repairer = new Repairer("Bob", null, 0, null, null);
 
@@ -81,6 +84,21 @@ public class ControlCenter {
 
     }
 
+     public void VehicleRented(Vehicle v){
+
+        v.setState(new Unvailable());
+        v.setNbLocations();
+        this.VehicleIsUsingBy.add(v);
+
+
+
+    }
+
+
+
+
+
+
    public void BackVehicleStation(Station st, String idVehicle)
         throws MaxNumberVException {
 
@@ -105,6 +123,32 @@ public class ControlCenter {
     }
 
     st.addVehicle(ve);
+}
+
+
+
+
+public Vehicle BackVehicleStation(){
+
+    Vehicle ve = null;
+
+    if(VehicleIsUsingBy.size() == 0){
+        System.out.println("No vehicle for deposit");
+        return null;
+    }
+
+    int index = random.nextInt(VehicleIsUsingBy.size());
+
+    ve = VehicleIsUsingBy.remove(index);
+          
+
+    if (ve.getNbLocations() == 1) {
+        ve.accept(repairer);
+    } else {
+        ve.setState(new Available());
+    }
+
+    return ve;
 }
 
     // Method to be used when the general counter has been increased by 1 if a vehicle was repairing
