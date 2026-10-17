@@ -7,21 +7,17 @@ public class App {
     public static int counterTime = 0; // General counter
     public static void main(String[] agrs){
 
-        
-
-
-
         Vehicle v= new MockVehicle("BB-011",100,ColorEnum.BLACK);
         Vehicle v2= new MockVehicle("BB-89" , 150,ColorEnum.RED);
         Vehicle v3= new MockVehicle("BB-002" , 110,ColorEnum.YELLOW);
 
         VehicleAccessoryDecorator vad = new Basket(v);
 
-        float priceB = v.getPrice();
+        double priceB = v.getPrice();
         v.addAccessory(vad);
 
         
-        float priceA= v.getPrice();
+        double priceA= v.getPrice();
 
 
         System.out.println(priceB);
@@ -58,7 +54,7 @@ public class App {
         ControlCenter.getControlCenter().showMapStation();
 
         
-        Person p = new User("Matheo", "Georges", 20, "Plombier", 400f);
+        Person p = new User("Matheo", "Georges", 20, "Plombier", 400.00);
         p.RentVehicle(s, v.getId());
 
         System.out.println(p.getSolde());

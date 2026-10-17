@@ -7,7 +7,7 @@ import java.util.List;
 public abstract class Vehicle implements  VehicleVisitor{
 
     protected  String id;
-    protected float price;
+    protected double price;
     protected State state;
     protected int nbLoc;
     protected int nbNotUsed;
@@ -17,7 +17,7 @@ public abstract class Vehicle implements  VehicleVisitor{
     protected List<VehicleAccessoryDecorator> accessories;
 
 
-    public Vehicle(String id , float price, ColorEnum c){
+    public Vehicle(String id , double price, ColorEnum c){
         this.id = id;
         this.price = price;
         this.color = c;
@@ -42,7 +42,7 @@ public abstract class Vehicle implements  VehicleVisitor{
         }
     }
 
-    public abstract float cost();
+    public abstract double cost();
     
 
     @Override public String toString(){
@@ -51,11 +51,11 @@ public abstract class Vehicle implements  VehicleVisitor{
 
     // Getter & Setter of Price
 
-    public float getPrice(){
+    public double getPrice(){
         return this.price;
     }
 
-    public void setCost(float c){
+    public void setCost(double c){
         this.price = c ;
     }
 

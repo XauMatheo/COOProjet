@@ -2,8 +2,9 @@
 
 Last Update : 
 
-Implementation of Simulation class
-Implementation of RandomMethod class (for distribution)
+Refine type budget : Float -> Double 
+Class Bike 
+Class Test Person(look at the doc for next tests to do)
 
 
 To do :

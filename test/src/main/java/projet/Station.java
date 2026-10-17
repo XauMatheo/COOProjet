@@ -91,7 +91,7 @@ public class Station {
             }
         }
         if(trouve == 0){
-            System.out.println("Cannot find the vehicle, try again(vv)");
+            System.out.println("Cannot find the vehicle, try again");
         }
 
         return null;

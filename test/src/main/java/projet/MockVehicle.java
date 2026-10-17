@@ -7,12 +7,12 @@ import java.util.List;
 public class MockVehicle extends Vehicle{
 
 
-    public MockVehicle(String id,float price , ColorEnum c) {
+    public MockVehicle(String id,double price , ColorEnum c) {
         super(id ,price , c);
     }
 
     @Override 
-    public float cost() {
+    public double cost() {
         return this.price;
     }
 

@@ -16,12 +16,13 @@ public class ControlCenter {
     private Random random;
  
 
-    private Visitor repairer = new Repairer("Bob", null, 0, null, null);
+    private Visitor repairer;
 
     private ControlCenter(){
 
         this.station = new HashMap<Integer, Station>();
         this.VehicleIsUsingBy = new ArrayList<>();
+        this.repairer = new Repairer("Bob", "Lenon", 40, "Repairer", 200.0);
     
     }
 
@@ -59,7 +60,7 @@ public class ControlCenter {
 
 
 
-    public void VehicleRented(Station st, String VehicleId){
+    public boolean VehicleRented(Station st, String VehicleId){
 
         int idStation = st.getId();
 
@@ -67,13 +68,13 @@ public class ControlCenter {
 
         if(s == null){
             System.out.println("This station doesn't exist");
-            return;
+            return false;
         }
         Vehicle v= st.getVehicleById(VehicleId);
 
         if(v == null){
             System.out.println("This vehicle doesn't exist");
-            return;
+            return false;
         }
 
         v.setState(new Unvailable());
@@ -82,6 +83,7 @@ public class ControlCenter {
         st.removeVehicleById(VehicleId);
       
 
+        return true;
     }
 
      public void VehicleRented(Vehicle v){

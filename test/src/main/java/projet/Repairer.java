@@ -2,7 +2,7 @@ package projet;
 
 public class Repairer extends  Person implements  Visitor{
 
-    public Repairer(String n , String s , int a , String o, Float solde){
+    public Repairer(String n , String s , int a , String o, double solde){
         super(n,s,a,o,solde);
     }
 

@@ -27,20 +27,19 @@ public class VehicleTest {
         assertEquals(1,this.v.getAccessories().size());
         assertSame(this.vad,this.v.getAccessories().get(0));
 
-   
-
     }
 
     @Test 
     public void testCostAccessories(){
 
-        float priceB = v.getPrice();
+        double priceB = v.getPrice();
         v.addAccessory(vad);
-        float priceA = v.getPrice();
+        double priceA = v.getPrice();
 
         assertEquals(120, priceA);
 
         
     }
+    
     
 }

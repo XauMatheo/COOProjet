@@ -11,6 +11,7 @@ import org.junit.jupiter.api.BeforeEach;
 public class StationTest {
 
     private Station s;
+    private Station s2;
 
     private Vehicle  v = new MockVehicle("123",100,ColorEnum.BLACK);
 
@@ -18,6 +19,7 @@ public class StationTest {
     private void init(){
 
         this.s = new Station(123,2);
+        this.s = new Station(456,1);
    
     }
 
@@ -46,6 +48,7 @@ public class StationTest {
 
         });
     }
+
 
 
     

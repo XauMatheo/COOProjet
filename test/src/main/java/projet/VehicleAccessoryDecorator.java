@@ -10,8 +10,8 @@ public abstract class VehicleAccessoryDecorator extends Vehicle{
         
     }
 
-    public abstract float cost();
-    public float getPriceAccessory(){
+    public abstract double cost();
+    public double getPriceAccessory(){
         return this.price;
     }
 
