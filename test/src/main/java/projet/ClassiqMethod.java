@@ -2,22 +2,26 @@ package projet;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+
+
+
 
 public class ClassiqMethod implements  DistributionMethods{
 
 
-    public void redistributionMethod(List<Station> stations) throws MaxNumberVException{
+    public void redistributionMethod(Map<Integer,Station> stations) throws MaxNumberVException{
 
         List<Station> dest = new ArrayList<>();
         List<Station> src = new ArrayList<>();
 
-        for(Station st : stations){
+        for(Map.Entry<Integer,Station> entry : stations.entrySet()){
 
-            if((st.getnbV() == 0 && st.getTimeAlone() > 2)){
-                dest.add(st);
+            if((entry.getValue().getnbV() == 0 && entry.getValue().getTimeAlone() > 2)){
+                dest.add(entry.getValue());
             }
-            if(st.getnbV() == st.getCapacity() && st.getTimeAlone() > 2){
-                src.add(st);
+            if(entry.getValue().getnbV() == entry.getValue().getCapacity() && entry.getValue().getTimeAlone() > 2){
+                src.add(entry.getValue());
             }
 
         }

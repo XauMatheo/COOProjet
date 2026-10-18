@@ -47,20 +47,7 @@ public class Station {
         return this.nbV;
     }
 
-    public int getTimeFull(){
-        return this.TimeFull;
-    }
-    public int getTimeEmpty(){
-        return this.TimeEmpty;
-    }
-
-    public void setTimeFull(){
-        this.TimeFull = 0;
-    }
-
-    public void setTimeEmpty(){
-        this.TimeEmpty = 0;
-    }
+    
 
 
     public boolean isFull(){

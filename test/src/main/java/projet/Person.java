@@ -28,10 +28,14 @@ public abstract class Person {
         if(this.solde >= v.getPrice()){
             this.solde -= v.getPrice();
             ControlCenter.getControlCenter().VehicleRented(st, idVehicle);
-        }
-            
+        }else{
         System.out.println("Not enough Money to rent this one, try another one or add some money to your account");
         return false;
+        }
+
+        return true;
+            
+        
     
 
     }

@@ -1,8 +1,8 @@
 package projet;
-import java.util.List;
+import java.util.Map;
 
 interface DistributionMethods {
 
-    void redistributionMethod(List<Station> stations) throws MaxNumberVException;
+    void redistributionMethod(Map<Integer,Station> stations) throws MaxNumberVException;
     
 }

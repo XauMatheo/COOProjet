@@ -14,6 +14,7 @@ public class ControlCenter {
     List<Vehicle> VehicleRobbed;
     private static ControlCenter instance;
     private Random random;
+    private DistributionMethods method;
  
 
     private Visitor repairer;
@@ -23,6 +24,7 @@ public class ControlCenter {
         this.station = new HashMap<Integer, Station>();
         this.VehicleIsUsingBy = new ArrayList<>();
         this.repairer = new Repairer("Bob", "Lenon", 40, "Repairer", 200.0);
+        this.method = new ClassiqMethod();
     
     }
 
@@ -57,6 +59,26 @@ public class ControlCenter {
         );
     }
 }
+
+    public boolean isEmptyFull(){
+        int find = 0;
+        for(Map.Entry<Integer,Station> entry : station.entrySet()){
+            if(entry.getValue().getTimeAlone() > 2 && ( entry.getValue().isEmpty() == true || entry.getValue().isFull() == true) ){
+                find = 1;
+                try{
+                    this.method.redistributionMethod(station); 
+                }catch(MaxNumberVException e){
+                    System.out.println(e.getMessage());
+                }
+                
+               
+            }
+        }
+        if(find  == 1) return true;
+
+        return false;
+
+    }
 
 
 
