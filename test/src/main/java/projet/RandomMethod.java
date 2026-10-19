@@ -11,23 +11,72 @@ public class RandomMethod implements DistributionMethods {
 
         Random rd = new Random();
         int nbVehcle = rd.nextInt(5) +1;
+        int counter = 0;
 
-        Station src = stations.get(rd.nextInt(stations.size()));
-        Station dest = stations.get(rd.nextInt(stations.size()));
+        List<Station> sta = new ArrayList<>(stations.values());
+    
+        Station src = sta.get(rd.nextInt(sta.size()));
+        Station dest = sta.get(rd.nextInt(sta.size()));
+
+        while((src.getId() == dest.getId())){
+            src = sta.get(rd.nextInt(sta.size()));
+            dest = sta.get(rd.nextInt(sta.size())); 
+        }
+
+        System.out.println("BEFORE redistribution : Station src ");
+    
+        src.getVehicle();
+
+        System.out.println("BEFORE redistribution : Station dest ");
+
+        dest.getVehicle();
         
-            while((src != dest && src.getnbV() >=1 && (dest.getnbV() != dest.getCapacity()))){
-                src = stations.get(rd.nextInt(stations.size()));
-                dest = stations.get(rd.nextInt(stations.size()));
-                
-            }
+    
+
             
+        while(nbVehcle > src.getnbV()){
+            nbVehcle = rd.nextInt(src.getnbV()) +1;
+        }
+            
+
+    
         while(nbVehcle != 0){
 
-            Vehicle v = src.removeVehicle();
-            dest.addVehicle(v);
-            nbVehcle--;
+            if(dest.getnbV() == dest.getCapacity() && sta.size() > 2){
+         
+                Station previous = dest;
+                Station current  = sta.get(rd.nextInt(sta.size()));
+                while(previous == current){
+                    current = sta.get(rd.nextInt(sta.size()));
+                }
+                
+            }
+            else if(sta.size() <= 2 && dest.getnbV() == dest.getCapacity()){
+                System.out.println("Not enough station to continue the redistribution but "+counter+" vehicles were distributed");
+                return;
+       
+            }else {
+                 Vehicle v = src.removeVehicle();
+                dest.addVehicle(v);
+                nbVehcle--;
+                counter++;
+            }
+        
 
         }
+
+
+        System.out.println("AFTER redistribution : src ");
+
+        src.getVehicle();
+
+        System.out.println("AFTER redistribution : dest ");
+                
+        dest.getVehicle();
+        
+
+        System.out.println("Vehicles distributed : "+counter);
+        
 
         }
         

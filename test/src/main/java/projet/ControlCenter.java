@@ -39,6 +39,10 @@ public class ControlCenter {
 
     }
 
+    public void setMethodD(DistributionMethods md){
+        this.method = md;
+    }
+
     public void getVehicleUsing(){
         for(Vehicle v : VehicleIsUsingBy){
             System.out.print(v.toString());

@@ -103,11 +103,16 @@ public class Station {
             }
         }
     }
-    public Vehicle removeVehicle(){
+    public Vehicle removeVehicle(){ // Choosed to do not random
         for(int i = 0; i < nbV ; i++){
             if(tabV[i] != null){
                 Vehicle v = tabV[i];
-                tabV[i] = null;
+                
+                for(int j = i; j < nbV-1;j++){
+                    tabV[j] = tabV[j+1];
+                }
+                tabV[nbV-1] = null;
+                nbV--;
                 return v;
             }
         }
