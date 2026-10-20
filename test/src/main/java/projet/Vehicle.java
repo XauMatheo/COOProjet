@@ -69,7 +69,7 @@ public abstract class Vehicle implements  VehicleVisitor{
     public State getState(){
         return this.state;
     }
-
+ 
 
     // Getter & Setter of NbLocations
 

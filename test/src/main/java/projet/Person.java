@@ -21,16 +21,20 @@ public abstract class Person {
         Vehicle v = st.getVehicleById(idVehicle);
 
         if(v==null){
-            System.out.println("Vehicle not found, the station might be empty");
+            System.out.println("Vehicle not found or Unvailable, the station might be empty");
+            return false;
+        }
+        if(v.getState() instanceof Unvailable){
+            System.out.println("Cannot rent this vehicle becasue it's being repaired");
             return false;
         }
 
         if(this.solde >= v.getPrice()){
             this.solde -= v.getPrice();
             ControlCenter.getControlCenter().VehicleRented(st, idVehicle);
-        }else{
-        System.out.println("Not enough Money to rent this one, try another one or add some money to your account");
-        return false;
+        }else if(this.solde < v.getPrice()){
+            System.out.println("Not enough Money to rent this one, try another one or add some money to your account");
+            return false;
         }
 
         return true;

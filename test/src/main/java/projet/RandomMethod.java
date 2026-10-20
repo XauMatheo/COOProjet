@@ -34,7 +34,8 @@ public class RandomMethod implements DistributionMethods {
     
 
             
-        while(nbVehcle > src.getnbV()){
+        while(nbVehcle > src.getnbV() && src.getnbV() != 0){
+            System.out.println("Struggle here");
             nbVehcle = rd.nextInt(src.getnbV()) +1;
         }
             
@@ -47,6 +48,7 @@ public class RandomMethod implements DistributionMethods {
                 Station previous = dest;
                 Station current  = sta.get(rd.nextInt(sta.size()));
                 while(previous == current){
+                    previous = current;
                     current = sta.get(rd.nextInt(sta.size()));
                 }
                 
@@ -55,15 +57,15 @@ public class RandomMethod implements DistributionMethods {
                 System.out.println("Not enough station to continue the redistribution but "+counter+" vehicles were distributed");
                 return;
        
-            }else {
-                 Vehicle v = src.removeVehicle();
-                dest.addVehicle(v);
-                nbVehcle--;
-                counter++;
+            }
+            Vehicle v = src.removeVehicle();
+            dest.addVehicle(v);
+            nbVehcle--;
+            counter++;
             }
         
 
-        }
+        
 
 
         System.out.println("AFTER redistribution : src ");
@@ -81,5 +83,5 @@ public class RandomMethod implements DistributionMethods {
         }
         
     }
-    
+
 

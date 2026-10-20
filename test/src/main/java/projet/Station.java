@@ -1,5 +1,7 @@
 package projet;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Observer;
 
 public class Station {
@@ -78,7 +80,7 @@ public class Station {
             }
         }
         if(trouve == 0){
-            System.out.println("Cannot find the vehicle, try again");
+            System.out.println("Cannot find the vehicle,it might be unvailable,try again");
         }
 
         return null;
@@ -131,6 +133,35 @@ public class Station {
         }
     }
 
+    // get number of Vehicle Unvailable 
+
+    public int getNVehiculeUnvailable(){
+        int counter=0;
+        for(int i = 0; i  < nbV ;i++){
+            if(tabV[i].getState() instanceof Unvailable){
+                counter++;
+            }
+        }
+
+        return counter;
+    }
+
+    // Shared list of vehicle Available 
+
+    public List<Vehicle> getListVehicleAvailable(){
+        List<Vehicle> vehicles = new ArrayList<>();
+        for(int i = 0; i <nbV ; i++){
+            if(tabV[i].getState() instanceof Available){
+                vehicles.add(tabV[i]);
+            }
+
+        }
+        return vehicles;
+    }
+
+
+
+
     // Add Vehicle 
 
     public void addVehicle(Vehicle v) throws MaxNumberVException{
@@ -139,8 +170,8 @@ public class Station {
         }else{
             for(int i = 0; i < capacity ; i++){
                 if(tabV[i] == null){
-                    tabV[i] = v ;
-                    nbV++;
+                    this.tabV[i] = v ;
+                    this.nbV++;
                     System.out.println("The vehicle has been set for this Station.");
                     break;
                 }

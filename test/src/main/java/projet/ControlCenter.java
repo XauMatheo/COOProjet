@@ -88,9 +88,8 @@ public class ControlCenter {
 
     public boolean VehicleRented(Station st, String VehicleId){
 
-        int idStation = st.getId();
 
-        Station s = station.get(idStation);
+        Station s = st;
 
         if(s == null){
             System.out.println("This station doesn't exist");
@@ -146,6 +145,7 @@ public class ControlCenter {
 
     if (ve.getNbLocations() == 1) {
         ve.accept(repairer);
+       
     } else {
         ve.setState(new Available());
     }

@@ -39,15 +39,16 @@ public class ClassiqMethod implements  DistributionMethods{
             for(Station statSrc : src){
                 for(Station statDest : dest){
 
-                    int surplus = statSrc.getnbV() / 2;
-                    int available= statDest.getCapacity() - statDest.getnbV();
+                    List<Vehicle> VehicleAvailable = statSrc.getListVehicleAvailable();
 
-                    
+                    int surplus = VehicleAvailable.size() / 2;
+                    int available= statDest.getCapacity() - statDest.getnbV();
                     int moveVehicle = Math.min(available , surplus);
 
-        
+                    
+
                     for(int i = 0; i < moveVehicle ;i ++){
-                        Vehicle v = statSrc.removeVehicle();
+                        Vehicle v = VehicleAvailable.remove(0);
                         statDest.addVehicle(v);
                     }
                 
