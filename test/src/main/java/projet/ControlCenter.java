@@ -23,6 +23,7 @@ public class ControlCenter {
 
         this.station = new HashMap<Integer, Station>();
         this.VehicleIsUsingBy = new ArrayList<>();
+        this.VehicleRobbed = new ArrayList<>();
         this.repairer = new Repairer("Bob", "Lenon", 40, "Repairer", 200.0);
         this.method = new ClassiqMethod();
     
@@ -186,6 +187,7 @@ public Vehicle BackVehicleStation(){
         for(Map.Entry<Integer , Station> entry : station.entrySet()){
             entry.getValue().setStateVehicle();
         }
+        System.out.println("Vehicle have been repaired and they are now available in the station");
 
     }
 
@@ -198,29 +200,37 @@ public Vehicle BackVehicleStation(){
     }
 
     // Show vehicle robbed
-    public void getVehicleRobbedr(){
+    public void getVehicleRobbed(){
 
         for(Vehicle v: VehicleRobbed){
             System.out.println(v.toString());
         }
     }
 
-    public void checkVehicleToRob(Station st){
+    public boolean checkVehicleToRob(Station st){
 
         Vehicle ve = null;
 
-        if(st.getTimeAlone() == 2 && st.getnbV() == 1){
-
+        if(st.getnbV() == 1){
             ve = st.getSingleVehicle();
-                
-            if (ve != null){
+            if (ve != null && ve.getNbNotUsed() == 2){
                 ve.setState(new Robbed());
                 st.removeVehicleById(ve.getId());
                 VehicleRobbed.add(ve);
+                
+                /* 
+                st.getVehicle();
+                System.out.println("List vehicle robbed : ");
+                getVehicleRobbed();
+                */
+               
+                System.out.println("Oh no, the vehicle has been stolen and won't be able to come back to the station");
+                return true;
 
             }
 
         }
+        return false;
 
     }
 

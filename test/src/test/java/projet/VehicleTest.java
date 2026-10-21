@@ -5,6 +5,9 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import java.util.ResourceBundle.Control;
+
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -88,7 +91,7 @@ public class VehicleTest {
         }
         
     }
-        */
+        
 
     @Test 
     public void testMethodDistUnvailable(){
@@ -117,6 +120,76 @@ public class VehicleTest {
             System.out.println(e.getMessage());
         }
         
+    }
+        
+    @Test 
+    public void testFinishedRepaired(){
+        try{
+
+            // Counter equals 1 ...
+            ControlCenter.getControlCenter().addMapStation(s);
+            ControlCenter.getControlCenter().addMapStation(s2);
+            ControlCenter.getControlCenter().addMapStation(s3);
+
+            this.s2.setTimeAlone();
+            this.s2.setTimeAlone();
+            this.s2.setTimeAlone();
+
+            s.addVehicle(v);
+
+
+            p.RentVehicle(s, v.getId());
+
+            p.FinishedRentingVehicle(s, v.getId());
+
+            //Counter equals 2 ... 
+
+            ControlCenter.getControlCenter().FinishRepaired();
+
+            assertTrue(v.getState() instanceof Available);
+
+            
+            
+        }catch(MaxNumberVException e){
+            System.out.println(e.getMessage());
+        }
+
+    }
+        */
+
+    @Test 
+    public void VehicleRobbed(){
+
+        try{
+
+            // Counter equals 1 ...
+            ControlCenter.getControlCenter().addMapStation(s);
+            ControlCenter.getControlCenter().addMapStation(s2);
+            ControlCenter.getControlCenter().addMapStation(s3);
+
+            //Empty station 
+            this.s2.setTimeAlone();
+            this.s2.setTimeAlone();
+            this.s2.setTimeAlone();
+
+            s.addVehicle(v);
+            v.setNbNotUsed();
+
+            //Counter equals 2 ... 
+            v.setNbNotUsed();
+       
+            
+            //Counter equals 3 ... 
+
+            assertTrue(ControlCenter.getControlCenter().checkVehicleToRob(s));
+            
+            
+            
+        }catch(MaxNumberVException e){
+            System.out.println(e.getMessage());
+        }
+
+
     }
     
     
