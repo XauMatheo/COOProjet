@@ -101,6 +101,10 @@ public abstract class Vehicle implements  VehicleVisitor{
         this.nbNotUsed += 1;
     }
 
+    public void initNbNotUsed(){
+        this.nbNotUsed = 0;
+    }
+
     // Getter ID 
 
     public String getId(){
