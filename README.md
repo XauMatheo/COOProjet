@@ -1,123 +1,10 @@
 # Projet : gestion d'un parc de véhicules en libre-service
  
 ## 1. Présentation
- 
+
 **Binôme :**
- 
+
 - Matheo Georges
-Ce projet Java simule un système de **location de véhicules en libre-service** (type vélos ou trottinettes en station).
- 
-Le programme gère :
- 
-- des **stations** de capacité limitée, dans lesquelles on dépose et on récupère des véhicules ;
-- des **véhicules** de différentes couleurs, auxquels on peut ajouter des accessoires (par exemple un panier) ;
-- des **utilisateurs** qui louent et rendent des véhicules, et des **réparateurs** qui remettent en état les véhicules abîmés ;
-- un **centre de contrôle** qui supervise l'ensemble : véhicules en cours d'utilisation, véhicules volés, et **redistribution** des véhicules entre les stations selon une méthode choisie.
-Le code est organisé dans le package `projet`.
- 
----
- 
-## 2. HowTo
-  
-### 2.1 Récupérer les sources
-Dans un terminal 
-
-```bash
-mkdir [Nom_Dossier]
-cd [Nom_Dossier]
-git clone https://gitlab-etu.fil.univ-lille.fr/matheo.georges.etu/projetcoo
-```
- 
-### 2.2 Structure attendue
- 
-```
-.
-├── src/projet/        # sources .java
-├── test/projet/       # tests
-├── bin/               # fichiers .class générés
-├── doc/               # documentation Javadoc générée
-├── Makefile
-└── README.md
-```
- 
-### 2.3 Générer la documentation
- 
-À exécuter **à la racine du projet** :
- 
-```bash
-javadoc -d doc -sourcepath src -subpackages projet
-```
- 
-La documentation est générée dans le dossier **`doc/`**. Ouvrir `doc/index.html` dans un navigateur.
- 
-### 2.4 Compiler et exécuter les sources
- 
-À exécuter **à la racine du projet** :
- 
-```bash
-mkdir -p bin
-javac -d bin src/projet/*.java
-java -cp bin projet.App
-```
- 
-### 2.5 Compiler et exécuter les tests
- 
-À exécuter **à la racine du projet** 
- 
-```bash
-javac -d bin -cp bin:lib/junit-platform-console-standalone.jar test/projet/*.java
-java -jar lib/junit-platform-console-standalone.jar -cp bin --scan-classpath
-```
- 
-Si les tests sont de simples classes avec un `main` :
- 
-```bash
-javac -d bin -cp bin test/projet/*.java
-java -cp bin projet.App
-```
- 
-### 2.6 Générer et exécuter l'archive `.jar`
- 
-À exécuter **à la racine du projet**, après la compilation :
- 
-```bash
-jar cfe projet.jar projet.App -C bin .
-java -jar projet.jar
-```
-
-### 2.7 Avec le Makefile
-  
-```bash
-make          # compile
-make run      # compile et exécute
-make doc      # génère la Javadoc dans doc/
-make test     # compile et exécute les tests
-make jar      # génère projet.jar
-make clean    # supprime bin/, doc/ et projet.jar
-```
- 
----
- 
-## 3. Éléments de code
- 
-### 3.1 Vue d'ensemble de la conception
- 
-Le diagramme de classes complet est fourni dans `diagramme.png` (source : `diagramme.puml`).
- 
-Le projet s'appuie sur plusieurs **patrons de conception** et sur d'autres principes vus en cours.
- 
-### 3.2 Patrons de conception utilisés
- 
-| Patron | Classes concernées | Rôle |
-|---|---|---|
-| **Singleton** # Projet : gestion d'un parc de véhicules en libre-service
-
-## 1. Présentation
-
-**Binôme :**
-
-- Matheo [NOM]
-- [Prénom] [NOM]
 
 Ce projet Java simule un système de **location de véhicules en libre-service** (type vélos ou trottinettes en station).
 
@@ -136,7 +23,7 @@ Le code est organisé dans le package `projet`.
 
 ### 2.1 Récupérer les sources
 
-Dans un terminal :
+Dans un terminal et dans un de vos dossier : 
 
 ```bash
 git clone https://gitlab-etu.fil.univ-lille.fr/matheo.georges.etu/projetcoo
