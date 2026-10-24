@@ -125,20 +125,6 @@ Le projet s'appuie sur plusieurs **patrons de conception** et sur d'autres princ
 - **Encapsulation** : les attributs sont `private` ou `protected`, l'accès se fait par des getters/setters en dehors des classes.
 
 ### 3.4 Points à mettre en avant
-
-Le projet a été pensé pour être le plus général possible : l'ajout ou la modification d'un élément (nouvel accessoire, nouvelle méthode de redistribution, nouvel état) se fait sans modifier le code fonctionnel existant.| `ControlCenter` | Une seule instance du centre de contrôle dans tout le programme (constructeur privé, accès via `getControlCenter()`). |
-| **Decorator** | `Vehicle`, `VehicleAccessoryDecorator`, `Basket` | Ajoute des accessoires à un véhicule (et leur coût) sans modifier la classe `Vehicle` ni créer une sous-classe par combinaison. |
-| **Visitor** | `Visitor`, `VehicleVisitor`, `Repairer` | Permet à un réparateur d'agir sur un véhicule (`visit(Vehicle)`) sans que le véhicule connaisse le détail de la réparation. |
-| **State** | `State`, `Available`, `Unvailable`, `Robbed` | L'état d'un véhicule (disponible, indisponible, volé) est un objet : `currentState()` change de comportement selon l'état. |
-| **Strategy** | `DistributionMethods`, `ClassiqMethod`, `RandomMethod` | La méthode de redistribution des véhicules entre stations est interchangeable à l'exécution (`setMethodD`). |
- 
-### 3.3 Autres choix de conception
- 
-- **Classes abstraites** : `Person` (factorise nom, prénom, âge, profession, solde) est spécialisée en `User` et `Repairer` ; `Vehicle` impose la méthode `cost()`.
-- **Énumérations** : `ColorEnum` (couleurs des véhicules) et `StateEnum` (états possibles) évitent les chaînes de caractères et permet de définir un ensemble de valeurs possibles.
-- **Exception personnalisée** : `MaxNumberVException` signale le dépassement du nombre maximal de véhicules pour une station.
-- **Encapsulation** : les attributs sont `private` ou `protected`, l'accès se fait par des getters/setters en dehors des classes.
-### 3.4 Points à mettre en avant
  
 Le projet a été pensé pour etre le plus général possible en cas d'un ajout ou modification d'un élément sans modifier le code fonctionnel.
 
