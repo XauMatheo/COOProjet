@@ -18,81 +18,64 @@ Le programme gère :
 Le code est organisé dans le package `projet`.
 
 ---
-
 ## 2. HowTo
+
+> Prérequis : Java (JDK) et Maven installés (`java -version`, `mvn -version`).
 
 ### 2.1 Récupérer les sources
 
-Dans un terminal et dans un de vos dossier : 
+Dans un terminal :
 
 ```bash
+mkdir [Nom_Dossier]
+cd [Nom_Dossier]
 git clone https://gitlab-etu.fil.univ-lille.fr/matheo.georges.etu/projetcoo
-cd projetcoo
-
 ```
 
-### 2.2 Structure attendue
+Se placer ensuite dans le dossier du projet Maven (celui qui contient le `pom.xml`). **Toutes les commandes suivantes s'exécutent depuis ce dossier :**
+
+```bash
+cd projetcoo/test
+```
+
+### 2.2 Structure du projet
 
 ```
-.
-├── src/projet/        # sources .java
-├── test/projet/       # tests
-├── bin/               # fichiers .class générés
-├── doc/               # documentation Javadoc générée
-├── Makefile
-└── README.md
+projetcoo/test/
+├── pom.xml
+├── src/main/java/projet/    # sources
+├── src/test/java/projet/    # tests
+└── target/                  # fichiers générés (compilation, jar)
 ```
 
 ### 2.3 Générer la documentation
 
-À exécuter **à la racine du projet** :
-
 ```bash
-javadoc -d doc -sourcepath src -subpackages projet
+javadoc -d doc -sourcepath src/main/java -subpackages projet
 ```
 
 La documentation est générée dans le dossier **`doc/`**. Ouvrir `doc/index.html` dans un navigateur.
+Pour ouvrir la documentation, tapez : `open doc/index.html` (Mac) | start `doc\index.html` (Windows)
 
 ### 2.4 Compiler et exécuter les sources
 
-À exécuter **à la racine du projet** :
-
 ```bash
-mkdir -p bin
-javac -d bin src/projet/*.java
-java -cp bin projet.App
+mvn compile
+java -cp target/classes projet.App
 ```
 
 ### 2.5 Compiler et exécuter les tests
 
-À exécuter **à la racine du projet**, après la compilation des sources (2.4).
-
-Avec JUnit 5 :
-
 ```bash
-javac -d bin -cp bin:lib/junit-platform-console-standalone.jar test/projet/*.java
-java -jar lib/junit-platform-console-standalone.jar -cp bin --scan-classpath
+mvn test
 ```
-
 
 ### 2.6 Générer et exécuter l'archive `.jar`
 
-À exécuter **à la racine du projet**, après la compilation :
-
 ```bash
-jar cfe projet.jar projet.App -C bin .
+mvn compile
+jar cfe projet.jar projet.App -C target/classes .
 java -jar projet.jar
-```
-
-### 2.7 Avec le Makefile
-
-```bash
-make          # compile
-make run      # compile et exécute
-make doc      # génère la Javadoc dans doc/
-make test     # compile et exécute les tests
-make jar      # génère projet.jar
-make clean    # supprime bin/, doc/ et projet.jar
 ```
 
 ---
