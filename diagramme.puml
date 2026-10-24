@@ -1,0 +1,226 @@
+@startuml
+skinparam classBackgroundColor #FFFFCC
+skinparam classBorderColor #333333
+skinparam classAttributeIconSize 12
+
+package projet {
+
+' ===== Personnes =====
+abstract class Person {
+  #name: String
+  #surname: String
+  #age: int
+  #occupation: String
+  #solde: double
+  +Person(String, String, int, String, double)
+  +RentVehicle(Station, String): boolean
+  +FinishedRentingVehicle(Station, String): void
+  +getSolde(): double
+}
+
+class User {
+  +User(String, String, int, String, double)
+}
+
+class Repairer {
+  +Repairer(String, String, int, String, double)
+  +visit(Vehicle): void
+}
+
+' ===== Véhicules (Decorator) =====
+abstract class Vehicle {
+  #id: String
+  #price: double
+  #state: State
+  #nbLoc: int
+  #nbNotUsed: int
+  #color: ColorEnum
+  #accessories: List
+  +Vehicle(String, double, ColorEnum)
+  +addAccessory(VehicleAccessoryDecorator): void
+  +getAccessory(): void
+  {abstract} +cost(): double
+  +toString(): String
+  +getPrice(): double
+  +setCost(double): void
+  +setState(State): void
+  +getState(): State
+  +setNbLocations(): void
+  +initNbLocations(): void
+  +getNbLocations(): int
+  +getColor(): ColorEnum
+  +getNbNotUsed(): int
+  +setNbNotUsed(): void
+  +initNbNotUsed(): void
+  +getId(): String
+  +getAccessories(): List
+}
+
+abstract class VehicleAccessoryDecorator {
+  #{final} vehicle: Vehicle
+  #VehicleAccessoryDecorator(Vehicle)
+  {abstract} +cost(): double
+  +getPriceAccessory(): double
+  {abstract} +toString(): String
+}
+
+class Basket {
+  -price: double
+  +Basket(Vehicle)
+  +cost(): double
+  +toString(): String
+  +accept(Visitor): void
+}
+
+' ===== Visitor =====
+interface VehicleVisitor {
+  {abstract} +accept(Visitor): void
+}
+
+interface Visitor {
+  {abstract} +visit(Vehicle): void
+}
+
+' ===== State =====
+interface State {
+  {abstract} +currentState(): String
+}
+
+class Available {
+  +Available()
+  +currentState(): String
+}
+
+class Unvailable {
+  +Unvailable()
+  +currentState(): String
+}
+
+class Robbed {
+  +Robbed()
+  +currentState(): String
+}
+
+enum StateEnum {
+  AVAILABLE
+  UNVAILABLE
+  ROBBED
+}
+
+enum ColorEnum {
+  RED
+  GREEN
+  YELLOW
+  PURPLE
+  BLACK
+  WHITE
+  BLEU
+}
+
+' ===== Stratégie de redistribution =====
+interface DistributionMethods {
+  {abstract} +redistributionMethod(Map): void
+}
+
+class ClassiqMethod {
+  +ClassiqMethod()
+  +redistributionMethod(Map): void
+}
+
+class RandomMethod {
+  +RandomMethod()
+  +redistributionMethod(Map): void
+}
+
+' ===== Station / ControlCenter =====
+class Station {
+  -timeAlone: int
+  -id: int
+  -capacity: int
+  -nbV: int
+  -TimeFull: int
+  -TimeEmpty: int
+  -tabV: Vehicle[]
+  +Station(int, int)
+  +getTimeAlone(): int
+  +setTimeAlone(): void
+  +getId(): int
+  +getCapacity(): int
+  +getnbV(): int
+  +isFull(): boolean
+  +isEmpty(): boolean
+  +getVehicleById(String): Vehicle
+  +removeVehicleById(String): void
+  +removeVehicle(): Vehicle
+  +getVehicle(): void
+  +getNVehiculeUnvailable(): int
+  +getListVehicleAvailable(): List
+  +addVehicle(Vehicle): void
+  +setStateVehicle(): void
+  +getSingleVehicle(): Vehicle
+}
+
+class ControlCenter {
+  ~station: Map
+  ~VehicleIsUsingBy: List
+  ~VehicleRobbed: List
+  {static} -instance: ControlCenter
+  -random: Random
+  -method: DistributionMethods
+  -repairer: Visitor
+  -ControlCenter()
+  {static} +getControlCenter(): ControlCenter
+  +setMethodD(DistributionMethods): void
+  +getVehicleUsing(): void
+  +addMapStation(Station): void
+  +showMapStation(): void
+  +isEmptyFull(): boolean
+  +VehicleRented(Station, String): boolean
+  +VehicleRented(Vehicle): void
+  +BackVehicleStation(Station, String): void
+  +BackVehicleStation(): Vehicle
+  +FinishRepaired(): void
+  +addVehicleRobbed(Station, String): void
+  +getVehicleRobbed(): void
+  +checkVehicleToRob(Station): boolean
+}
+
+class MaxNumberVException {
+  +MaxNumberVException(String)
+}
+
+}
+
+class Exception <<java.lang>>
+
+' ===== Héritage =====
+Person <|-- User
+Person <|-- Repairer
+Vehicle <|-- VehicleAccessoryDecorator
+VehicleAccessoryDecorator <|-- Basket
+Exception <|-- MaxNumberVException
+
+' ===== Implémentation d'interfaces =====
+Visitor <|.. Repairer
+VehicleVisitor <|.. Vehicle
+State <|.. Available
+State <|.. Unvailable
+State <|.. Robbed
+DistributionMethods <|.. ClassiqMethod
+DistributionMethods <|.. RandomMethod
+
+' ===== Associations =====
+VehicleAccessoryDecorator --> "1" Vehicle : #vehicle
+Vehicle --> "0..1" State : #state
+Vehicle --> "1" ColorEnum : #color
+Vehicle --> "*" VehicleAccessoryDecorator : #accessories
+Station --> "*" Vehicle : tabV
+ControlCenter --> "*" Station : station
+ControlCenter --> "0..1" DistributionMethods : method
+ControlCenter --> "0..1" Visitor : repairer
+ControlCenter --> "1" ControlCenter : instance
+ControlCenter ..> Vehicle : VehicleIsUsingBy\nVehicleRobbed
+Person ..> Station : utilise
+Visitor ..> Vehicle : visit
+VehicleVisitor ..> Visitor : accept
+@enduml
