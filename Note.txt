@@ -1,9 +1,0 @@
-Think about : 
-
-- When a VEHICLE is created(instanced), does it have 0 locations (New vehicle ? ) OR 
-
-Can it been already borrowed before (New vehicle but has been already used) -> Locations != 0 ? 
-
-
-
-
